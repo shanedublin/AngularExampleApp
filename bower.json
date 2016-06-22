@@ -4,6 +4,7 @@
   "author": "rushanedublin <rushanedublin@gmail.com>",
   "dependencies": {
     "angular": "^1.5.7",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "angular-ui-router": "^0.3.1"
   }
 }
