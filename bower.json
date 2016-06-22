@@ -1,0 +1,9 @@
+{
+  "name": "angular-example-app",
+  "version": "0.0.0",
+  "author": "rushanedublin <rushanedublin@gmail.com>",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "jquery": "^3.0.0"
+  }
+}
