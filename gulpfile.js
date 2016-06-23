@@ -14,55 +14,60 @@ gulp.task('default',function(callback){
 
 });
 
-gulp.task('hate',function(callback){
-  runSequence('bye-bye','copy-bower','js','build',callback);
-});
-
-gulp.task('bye-bye',function(){
-  return del.sync(['build/**','!build'],{"force":false});
-});
-
-gulp.task('build',  function(){
-
-
-  return gulp.src('./build/index.html')
-    .pipe(inject(
-      gulp.src('./build/**/*.js') // gulp-angular-filesort depends on file contents, so don't use {read: false} here
-        .pipe(angularFilesort())
-      ,{relative:true}))
-      .on('error',swallorErorr)
-    .pipe(gulp.dest('./build'));
-
-});
-
-function swallorErorr(error){
+function swallowError(error){
   console.log(error.toString());
    this.emit('end');
 }
 
-gulp.task('copy-bower',function(){
-    return gulp.src(mainBowerFiles())
-    .pipe(gulp.dest('./build/bower'));
+function logger(msg){
+  console.log(msg);
+}
+
+gulp.task('build',function(callback){
+  runSequence('delete-dist','js-hint',['bower-dist','src-dist','index-dist'],callback);
+})
+
+gulp.task('delete-dist',function(){
+  return del.sync(['dist/**','!dist']);
+});
+
+gulp.task('index-dist',function(){
+  gulp.src('./src/index.html')
+  .pipe(inject(gulp.src(mainBowerFiles(),  {read: false}), {name: 'bower'}))
+  .pipe(inject(gulp.src('./src/app/**/*.js').pipe(angularFilesort()), {relative:true}))
+  .on('error',swallowError)
+  .pipe(gulp.dest('./dist'));
 });
 
 
-gulp.task('js', function () {
-
-    return gulp.src('src/**')
-
-    .pipe(gulp.dest('./build'));
+gulp.task('bower-dist', function(){
+  return gulp.src(mainBowerFiles(),{base:'bower_components'})
+  .pipe(gulp.dest('./dist/bower_components'));
 });
 
 
-gulp.task('js-watch', ['hate'], function(){
+gulp.task('src-dist',function(){
+  return gulp.src(['src/**','!src/index.html'])
+  .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('js-hint',function(){
+  return gulp.src('src/**/*.js')
+  .pipe(jshint())
+  .pipe(jshint.reporter(logger));
+});
+
+
+gulp.task('js-watch', ['build'], function(){
   browserSync.reload();
 });
 
-gulp.task('serve', ['hate'],  function(){
+
+gulp.task('serve', ['build'],  function(){
 
   browserSync.init({
       server:{
-        baseDir: "build",
+        baseDir: "dist",
         index: "index.html"
       },
       port:3000,

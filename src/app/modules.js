@@ -1,4 +1,4 @@
 (function(){
   'use-strict';
-      angular.module('rusd', ['ui.router']);
+      angular.module('rusd', ['ui.router','rusd.input']);
 })();
