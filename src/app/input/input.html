@@ -1,1 +1,22 @@
-test stufff
+<div style="text-align:center; width: 33vw; margin-left: 33vw;">
+  <h1>Input types<h2>
+  <h2>Basic example</h2>
+
+
+  <input ng-model="text" placeholder="test text" type="text">
+  <pre >test text: {{text |json}}</pre>
+
+  <input ng-model="number" placeholder="test number" type="number">
+  <pre>test number: {{number |json}}</pre>
+
+  <input ng-model="checkbox"  type="checkbox">
+  <pre>test checkBox: {{checkbox |json}}</pre>
+
+
+
+  <h2>Complex example</h2>
+  <input ng-model="form.name" placeholder="form.name">
+  <br>
+  <input ng-model="form.password" type="password" placeholder="form.password">
+  <pre>form: {{form |json}}</pre>
+</div>
