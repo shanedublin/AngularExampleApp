@@ -1,0 +1,40 @@
+.bg-color-1 {
+  background-color:#6e7f80;
+}
+.bg-color-2 {
+  background-color:#536872;
+}
+.bg-color-3 {
+  background-color: 	#708090;
+}
+.bg-color-4 {
+  background-color: 	#536878;
+}
+.bg-color-5 {
+  background-color: #36454f;
+}
+
+pre{
+  background-color:	#708090;
+  display: block;
+  border: 1px solid #36454f;
+  word-break: break-all;
+  border-radius: 4px;
+  padding: 10px;
+  word-wrap: break-word;
+  margin: 10px ;
+}
+
+.container{
+  margin: auto;
+  text-align:center;
+  width: 800px;
+  border-radius: 10px;
+}
+
+input{
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+
+}

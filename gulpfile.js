@@ -35,6 +35,7 @@ gulp.task('index-dist',function(){
   gulp.src('./src/index.html')
   .pipe(inject(gulp.src(mainBowerFiles(),  {read: false}), {name: 'bower'}))
   .pipe(inject(gulp.src('./src/app/**/*.js').pipe(angularFilesort()), {relative:true}))
+  .pipe(inject(gulp.src('./src/app/**/*.css'), {relative:true}))
   .on('error',swallowError)
   .pipe(gulp.dest('./dist'));
 });
