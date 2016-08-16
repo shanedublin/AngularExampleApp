@@ -1,0 +1,12 @@
+<div  class="bg-color-1 container" >
+  <h1>kappas beware<h2>
+  {{1+1*9}} <br>
+  {{kappa.getDate()| date:'dd-MMM-yyyy hh:mm:ss a'}} <br>
+  {{kappa.foo}} 
+  	<br>
+  	<input type="number" ng-model="kappa.value">
+  <div ng-if="kappa.counter<100">{{kappa.counter}}</div>
+  <div ng-if="kappa.counter>=100"><img src="app/assets/kreygasm.png" style="height: 128px; width: 128px"></div>
+  	<br>
+  	<button ng-click="kappa.incr(kappa.value)">Press me baby</button>
+</div>
